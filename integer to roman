@@ -1,0 +1,24 @@
+#include <string>
+#include <vector>
+
+class Solution {
+public:
+    string intToRoman(int num) {
+        // Map decimal values to their corresponding Roman numeral symbols in descending order
+        const vector<int> values = {1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1};
+        const vector<string> symbols = {"M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"};
+        
+        string roman = "";
+        
+        // Loop through all values greedily
+        for (int i = 0; i < values.size(); i++) {
+            // While the current value can be subtracted from num
+            while (num >= values[i]) {
+                roman += symbols[i]; // Append the corresponding symbol
+                num -= values[i];    // Deduct the value from num
+            }
+        }
+        
+        return roman;
+    }
+};
